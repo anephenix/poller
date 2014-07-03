@@ -31,12 +31,7 @@ function poller (folderPath, cb) {
 
 		fs.stat(folderPath, function (err, stats) {
 
-			if (err) {
-				console.log('err occurred');
-				console.log(err);
-				console.log('/err');
-				return cb(err);
-			}
+			if (err) return cb(err);
 			if (!stats.isDirectory()) return cb(new Error('The path you passed is not a folder: ' + folderPath));
 
 			// Now you can start polling this
