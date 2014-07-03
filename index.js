@@ -22,8 +22,14 @@ function poller (folderPath, cb) {
 
 	fs.exists(folderPath, function (exists) {
 		if (!exists) {
-			cb(new Error('This folder does not exist: ' + folderPath));
+			return cb(new Error('This folder does not exist: ' + folderPath));
 		}
+
+		fs.stat(folderPath, function (err, stats) {
+			if (err) return cb(err);
+			if (!stats.isDirectory()) return cb(new Error('The path you passed is not a folder: ' + folderPath));
+		});
+
 	});
 
 }
