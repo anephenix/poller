@@ -28,7 +28,7 @@ poller('/tmp/myFolder', function (err, poll) {
 });
 ```
 
-License and Rights
+Licence and Rights
 ---
 
 &copy;2014 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
