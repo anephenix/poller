@@ -1,0 +1,29 @@
+{
+  "name": "poller",
+  "version": "0.0.0",
+  "description": "A FileSystem poller for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "cover": "NODE_ENV=test node_modules/.bin/istanbul cover node_modules/.bin/_mocha test/*",    
+    "lint": "jshint .",
+    "test": "NODE_ENV=test node_modules/.bin/mocha test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Anephenix/poller.git"
+  },
+  "keywords": [
+    "fs"
+  ],
+  "author": "Paul Jensen <paul@anephenix.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Anephenix/poller/issues"
+  },
+  "homepage": "https://github.com/Anephenix/poller",
+  "devDependencies": {
+    "istanbul": "^0.2.14",
+    "jshint": "^2.5.1",
+    "mocha": "^1.20.1"
+  }
+}
