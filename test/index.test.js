@@ -4,8 +4,10 @@
 
 // Dependencies
 //
-var assert = require('assert');
-var poller = require('../index');
+var assert 			= require('assert');
+var eventEmitter	= require('events').EventEmitter;
+var path   			= require('path');
+var poller 			= require('../index');
 
 
 
@@ -96,7 +98,18 @@ describe('poller(path);', function () {
 
 
 
-		it('should return an object');
+		it('should return an event emitter', function (done) {
+
+			var folderPath = path.join(__dirname, './example');
+			poller(folderPath, function (err, poll) {
+				assert.equal(null, err);
+				assert(poll instanceof eventEmitter);
+				assert(typeof poll === 'object');
+				done();
+			});
+
+
+		});
 
 
 
