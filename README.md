@@ -1,7 +1,13 @@
 Poller
 ======
 
+[![Build Status](https://travis-ci.org/Anephenix/poller.svg?branch=master)](https://travis-ci.org/Anephenix/poller)
+
 A FileSystem poller for Node.js
+
+Summary
+---
+
 
 This was developed as a reliable alternative to using file watching libraries like Chokidar and Node Watch. 
 
