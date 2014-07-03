@@ -2,6 +2,8 @@ Poller
 ======
 
 [![Build Status](https://travis-ci.org/Anephenix/poller.svg?branch=master)](https://travis-ci.org/Anephenix/poller)
+[![Dependency Status](https://david-dm.org/anephenix/poller.png)](https://david-dm.org/anephenix/poller)
+[![devDependency Status](https://david-dm.org/anephenix/poller/dev-status.png)](https://david-dm.org/anephenix/poller#info=devDependencies)
 [![Coverage Status](https://img.shields.io/coveralls/Anephenix/poller.svg)](https://coveralls.io/r/Anephenix/poller?branch=master)
 [![Code Climate](https://codeclimate.com/github/Anephenix/poller.png)](https://codeclimate.com/github/Anephenix/poller)
 
