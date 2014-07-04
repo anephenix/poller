@@ -185,9 +185,25 @@ describe('poller(path);', function () {
 						});
 
 					});
+
 				});
 
 			});
+
+
+
+		});
+
+
+
+		describe('poll.close();', function () {
+
+
+
+			it('should clear the timeout so that we are not polling the folder anymore');
+			// - How do we test for this?
+			// We could stub underscore's difference method to check that it is no longer being called?
+			// Or we could stub out poll.watch		
 
 
 

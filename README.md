@@ -30,15 +30,18 @@ var poller = require('poller');
 // Poll a file directory
 poller('/tmp/myFolder', function (err, poll) {
 
-  // Log every time a file is added into the folder
-  poll.on('add', function (filePath) {
-    console.log(filePath,'was added');
-  });
+    // Log every time a file is added into the folder
+    poll.on('add', function (filePath) {
+        console.log(filePath,'was added');
+    });
 
-  // Log every time a file is removed from the folder
-  poll.on('remove', function (filePath) {
-    console.log(filePath,'was removed');
-  });
+    // Log every time a file is removed from the folder
+    poll.on('remove', function (filePath) {
+        console.log(filePath,'was removed');
+    });
+
+    // Stop polling the folder for file adds/removals
+    poll.close();
 
 });
 ```
