@@ -44,7 +44,7 @@ function poller (folderPath, cb) {
 
 				poll.watch = function () {
 
-					poll.timeout = setTimeout(function () {
+					poll.timeout = setInterval(function () {
 
 						fs.readdir(folderPath, function (err, files) {
 
@@ -71,7 +71,7 @@ function poller (folderPath, cb) {
 
 
 				poll.close = function () {
-					clearTimeout(poll.timeout);
+					clearInterval(poll.timeout);
 				};
 
 
