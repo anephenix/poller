@@ -35,6 +35,11 @@ poller('/tmp/myFolder', function (err, poll) {
     console.log(filePath,'was added');
   });
 
+  // Log every time a file is removed from the folder
+  poll.on('remove', function (filePath) {
+    console.log(filePath,'was removed');
+  });
+
 });
 ```
 
