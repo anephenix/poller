@@ -4,10 +4,11 @@
 
 // Dependencies
 //
-var assert 			= require('assert');
+var assert			= require('assert');
 var eventEmitter	= require('events').EventEmitter;
-var path   			= require('path');
-var poller 			= require('../index');
+var fs				= require('fs');
+var path			= require('path');
+var poller			= require('../index');
 
 
 
@@ -107,6 +108,87 @@ describe('poller(path);', function () {
 				assert(typeof poll === 'object');
 				done();
 			});
+
+
+		});
+
+
+
+		describe('when a file is added within the folder', function () {
+
+
+			beforeEach(function (done) {
+
+				var folderPath = path.join(__dirname, './example');
+				var filePath   = path.join(folderPath,'testFile.txt');
+
+				fs.exists(filePath, function (exists) {
+					if (exists) {
+						return fs.unlink(filePath, done);
+					}
+
+					done();
+				});
+
+
+			});
+
+
+
+			it('should emit an add event from the poll event emitter', function (done) {
+
+				var folderPath = path.join(__dirname, './example');
+				var filePath   = path.join(folderPath,'testFile.txt');
+				poller(folderPath, function (err, poll) {
+
+					poll.on('add', function (addedFilePath) {
+						assert.equal(filePath, addedFilePath);
+						done();
+					});
+
+					fs.writeFile(filePath, 'Hello World', function (err) {
+						if (err) throw err;
+					});
+
+				});
+
+			});
+
+
+
+		});
+
+
+
+		describe('when a file is removed from within the folder', function () {
+
+
+
+			it('should emit a remove event from the poll event emitter', function (done) {
+
+				var folderPath = path.join(__dirname, './example');
+				var filePath   = path.join(folderPath,'testFile.txt');
+
+				fs.writeFile(filePath, 'Hello World', function (err) {
+
+					if (err) throw err;
+
+					poller(folderPath, function (err, poll) {
+
+						poll.on('remove', function (removedFilePath) {
+							assert.equal(filePath, removedFilePath);
+							done();
+						});
+
+						fs.unlink(filePath, function (err) {
+							if (err) done(err);
+						});
+
+					});
+				});
+
+			});
+
 
 
 		});

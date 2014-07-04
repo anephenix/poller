@@ -4,8 +4,9 @@
 
 // Dependencies
 //
-var eventEmitter = require('events').EventEmitter;
-var fs = require('fs');
+var _				= require('underscore');
+var eventEmitter	= require('events').EventEmitter;
+var fs				= require('fs');
 
 
 
@@ -36,7 +37,42 @@ function poller (folderPath, cb) {
 
 			// Now you can start polling this
 			var poll = new eventEmitter();
-			cb(null, poll);
+
+			fs.readdir(folderPath, function (err, files) {
+
+				poll.files = files;
+
+				poll.watch = function () {
+
+					setTimeout(function () {
+
+						fs.readdir(folderPath, function (err, files) {
+
+							if (err) throw err;
+
+							var addedFiles		= _.difference(files, poll.files);
+							var removedFiles	= _.difference(poll.files, files);
+
+							if (addedFiles.length > 0) {
+								addedFiles.forEach(function (addedFile) { poll.emit('add', folderPath + '/' + addedFile); });
+							}
+
+							if (removedFiles.length > 0) {
+								removedFiles.forEach(function (removedFile) { poll.emit('remove', folderPath + '/' + removedFile); });
+							}
+
+							poll.files = files;
+
+						});
+					}, 100);
+
+				};
+
+				poll.watch();
+
+				cb(err, poll);
+
+			});
 
 		});
 
