@@ -46,7 +46,7 @@ poller('/tmp/myFolder', function (err, poll) {
 });
 
 
-// Poll a file directory, which polls at an interval of 50ms
+// Poll a file directory at an interval of 50ms (the default is 100ms)
 poller('/tmp/myFolder', {interval: 50}, function (err, poll) {
     
 });
