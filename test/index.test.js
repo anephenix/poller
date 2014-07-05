@@ -200,10 +200,28 @@ describe('poller(path);', function () {
 
 
 
-			it('should clear the timeout so that we are not polling the folder anymore');
-			// - How do we test for this?
-			// We could stub underscore's difference method to check that it is no longer being called?
-			// Or we could stub out poll.watch		
+			it('should clear the timeout so that we are not polling the folder anymore', function (done) {
+
+				var folderPath = path.join(__dirname, './example');
+
+				poller(folderPath, function (err, poll) {
+
+					poll.on('add', function () {
+						done(new Error('a file add was recorded when it should not have'));
+					});
+
+					poll.close();
+
+					assert.equal(false, poll.timeout._repeat);
+					assert.equal(-1, poll.timeout._idleTimeout);
+					assert.equal(null, poll.timeout._onTimeout);
+
+					done();
+
+				});
+
+
+			});
 
 
 
