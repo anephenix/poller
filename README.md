@@ -44,6 +44,12 @@ poller('/tmp/myFolder', function (err, poll) {
     poll.close();
 
 });
+
+
+// Poll a file directory, which polls at an interval of 50ms
+poller('/tmp/myFolder', {interval: 50}, function (err, poll) {
+    
+});
 ```
 
 Licence and Rights

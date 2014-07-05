@@ -245,7 +245,23 @@ describe('poller(path, {options});', function () {
 
 
 
-		it('should allow the user to control the interval time between polling checks');
+		it('should allow the user to control the interval time between polling checks', function (done) {
+
+			var folderPath = path.join(__dirname, './example');
+
+			poller(folderPath, {interval: 50}, function (err, poll) {
+
+				poll.on('add', function () {
+					done(new Error('a file add was recorded when it should not have'));
+				});
+
+				assert.equal(50, poll.timeout._idleTimeout);
+				done();
+
+			});
+
+
+		});
 
 
 

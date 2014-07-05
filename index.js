@@ -12,10 +12,15 @@ var fs				= require('fs');
 
 // Returns the poller function for calling from Node's require interface
 //
-// @param folderPath  String    The path for the folder
-// @param cb          Function  The function to execute once finished
+// @param folderPath	String				The path for the folder
+// @param optionsOrCb   Object | Function	Either the options for the poller, or the function to execute once finished
+// @param cb			Function			The function to execute once finished
 //
-function poller (folderPath, cb) {
+function poller (folderPath, optionsOrCb, cb) {
+
+	// We set the callback to the 2nd argument, if no options are passed
+	//
+	if (cb === undefined) cb = optionsOrCb;
 
 	if (!folderPath) {
 
@@ -44,6 +49,14 @@ function poller (folderPath, cb) {
 
 				poll.watch = function () {
 
+					var interval;
+
+					if (typeof optionsOrCb === 'object' && typeof optionsOrCb.interval === 'number') {
+						interval = optionsOrCb.interval;
+					} else {
+						interval = 100;
+					}
+
 					poll.timeout = setInterval(function () {
 
 						fs.readdir(folderPath, function (err, files) {
@@ -64,7 +77,7 @@ function poller (folderPath, cb) {
 							poll.files = files;
 
 						});
-					}, 100);
+					}, interval);
 
 				};
 
