@@ -1,6 +1,7 @@
 Poller
 ======
 
+[![NPM version](https://badge.fury.io/js/poller.png)](http://badge.fury.io/js/poller)
 [![Build Status](https://travis-ci.org/Anephenix/poller.svg?branch=master)](https://travis-ci.org/Anephenix/poller)
 [![Dependency Status](https://david-dm.org/anephenix/poller.png)](https://david-dm.org/anephenix/poller)
 [![devDependency Status](https://david-dm.org/anephenix/poller/dev-status.png)](https://david-dm.org/anephenix/poller#info=devDependencies)
