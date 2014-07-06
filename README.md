@@ -12,8 +12,7 @@ A FileSystem poller for Node.js
 Summary
 ---
 
-
-This was developed as a reliable alternative to using file watching libraries like Chokidar and Node Watch. 
+This was developed as a reliable alternative to using file watching libraries like Chokidar and Node Watch.
 
 Install
 ---
@@ -55,4 +54,4 @@ poller('/tmp/myFolder', {interval: 50}, function (err, poll) {
 Licence and Rights
 ---
 
-&copy;2014 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
+&copy; 2014 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
