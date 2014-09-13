@@ -7,6 +7,7 @@ Poller
 [![devDependency Status](https://david-dm.org/anephenix/poller/dev-status.png)](https://david-dm.org/anephenix/poller#info=devDependencies)
 [![Coverage Status](https://img.shields.io/coveralls/Anephenix/poller.svg)](https://coveralls.io/r/Anephenix/poller?branch=master)
 [![Code Climate](https://codeclimate.com/github/Anephenix/poller.png)](https://codeclimate.com/github/Anephenix/poller)
+[![Codacy Badge](https://www.codacy.com/project/badge/30844a27cd944d5c8ed7770a5280ea4f)](https://www.codacy.com/public/Anephenix/poller.git)
 
 A FileSystem poller for Node.js
 
