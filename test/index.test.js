@@ -147,7 +147,7 @@ describe('poller(path);', function () {
 					});
 
 					fs.writeFile(filePath, 'Hello World', function (err) {
-						if (err) throw err;
+						if (err) { throw err; }
 					});
 
 				});
@@ -171,7 +171,7 @@ describe('poller(path);', function () {
 
 				fs.writeFile(filePath, 'Hello World', function (err) {
 
-					if (err) throw err;
+					if (err) { throw err; }
 
 					poller(folderPath, function (err, poll) {
 
@@ -181,7 +181,7 @@ describe('poller(path);', function () {
 						});
 
 						fs.unlink(filePath, function (err) {
-							if (err) done(err);
+							if (err) { done(err); }
 						});
 
 					});

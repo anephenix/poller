@@ -20,7 +20,7 @@ function poller (folderPath, optionsOrCb, cb) {
 
 	// We set the callback to the 2nd argument, if no options are passed
 	//
-	if (cb === undefined) cb = optionsOrCb;
+	if (cb === undefined) { cb = optionsOrCb; }
 
 	if (!folderPath) {
 
@@ -35,15 +35,15 @@ function poller (folderPath, optionsOrCb, cb) {
 
 		// return an error if the folder does not exist
 		//
-		if (!exists) return cb(new Error('This folder does not exist: ' + folderPath));
+		if (!exists) { return cb(new Error('This folder does not exist: ' + folderPath)); }
 
 		fs.stat(folderPath, function (err, stats) {
 
-			if (err) return cb(err);
+			if (err) { return cb(err); }
 
 			// return an error if the path is not a folder
 			//
-			if (!stats.isDirectory()) return cb(new Error('The path you passed is not a folder: ' + folderPath));
+			if (!stats.isDirectory()) { return cb(new Error('The path you passed is not a folder: ' + folderPath)); }
 
 			// Generate a polling event emitter
 			//
@@ -78,7 +78,7 @@ function poller (folderPath, optionsOrCb, cb) {
 
 						fs.readdir(folderPath, function (err, files) {
 
-							if (err) throw err;
+							if (err) { throw err; }
 
 							// Get the list of files that have been added or removed
 							// 
