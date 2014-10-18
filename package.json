@@ -27,13 +27,13 @@
   "devDependencies": {
     "notes" : "0.0.4",
     "npm-dview" : "1.0.0",
-    "coveralls": "^2.11.1",
-    "istanbul": "^0.3.2",
-    "jshint": "^2.5.5",
-    "mocha": "^1.21.4",
+    "coveralls": "2.11.1",
+    "istanbul": "0.3.2",
+    "jshint": "2.5.5",
+    "mocha": "1.21.5",
     "mocha-lcov-reporter": "0.0.1"
   },
   "dependencies": {
-    "underscore": "^1.7.0"
+    "underscore": "1.7.0"
   }
 }
