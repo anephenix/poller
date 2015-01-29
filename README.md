@@ -1,10 +1,10 @@
 Poller
 ======
 
-[![NPM version](https://badge.fury.io/js/poller.png)](http://badge.fury.io/js/poller)
+[![NPM version](https://badge.fury.io/js/poller.svg)](http://badge.fury.io/js/poller)
 [![Build Status](https://travis-ci.org/Anephenix/poller.svg?branch=master)](https://travis-ci.org/Anephenix/poller)
-[![Dependency Status](https://david-dm.org/anephenix/poller.png)](https://david-dm.org/anephenix/poller)
-[![devDependency Status](https://david-dm.org/anephenix/poller/dev-status.png)](https://david-dm.org/anephenix/poller#info=devDependencies)
+[![Dependency Status](https://david-dm.org/anephenix/poller.svg)](https://david-dm.org/anephenix/poller)
+[![devDependency Status](https://david-dm.org/anephenix/poller/dev-status.svg)](https://david-dm.org/anephenix/poller#info=devDependencies)
 [![Coverage Status](https://img.shields.io/coveralls/Anephenix/poller.svg)](https://coveralls.io/r/Anephenix/poller?branch=master)
 [![Code Climate](https://codeclimate.com/github/Anephenix/poller.png)](https://codeclimate.com/github/Anephenix/poller)
 [![Codacy Badge](https://www.codacy.com/project/badge/30844a27cd944d5c8ed7770a5280ea4f)](https://www.codacy.com/public/Anephenix/poller.git)
@@ -56,4 +56,4 @@ poller('/tmp/myFolder', {interval: 50}, function (err, poll) {
 Licence and Rights
 ---
 
-&copy; 2014 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
+&copy; 2015 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
