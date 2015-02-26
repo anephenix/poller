@@ -28,12 +28,12 @@
     "notes" : "0.0.4",
     "npm-dview" : "1.1.2",
     "coveralls": "2.11.2",
-    "istanbul": "0.3.5",
-    "jshint": "2.5.11",
+    "istanbul": "0.3.6",
+    "jshint": "2.6.0",
     "mocha": "2.1.0",
-    "mocha-lcov-reporter": "0.0.1"
+    "mocha-lcov-reporter": "0.0.2"
   },
   "dependencies": {
-    "underscore": "1.7.0"
+    "underscore": "1.8.2"
   }
 }
