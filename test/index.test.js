@@ -212,7 +212,7 @@ describe('poller(path);', function () {
 
 					poll.close();
 
-					assert.equal(false, poll.timeout._repeat);
+					assert.notEqual(true, poll.timeout._repeat);
 					assert.equal(-1, poll.timeout._idleTimeout);
 					assert.equal(null, poll.timeout._onTimeout);
 
