@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Anephenix/poller.git"
+    "url": "https://github.com/anephenix/poller.git"
   },
   "keywords": [
     "fs"
@@ -21,9 +21,9 @@
   "author": "Paul Jensen <paul@anephenix.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Anephenix/poller/issues"
+    "url": "https://github.com/anephenix/poller/issues"
   },
-  "homepage": "https://github.com/Anephenix/poller",
+  "homepage": "https://github.com/anephenix/poller",
   "devDependencies": {
     "notes" : "0.0.4",
     "npm-dview" : "1.1.2",
