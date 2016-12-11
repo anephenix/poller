@@ -49,11 +49,11 @@ poller('/tmp/myFolder', function (err, poll) {
 
 // Poll a file directory at an interval of 50ms (the default is 100ms)
 poller('/tmp/myFolder', {interval: 50}, function (err, poll) {
-    
+
 });
 ```
 
 Licence and Rights
 ---
 
-&copy; 2015 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
+&copy; 2016 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
