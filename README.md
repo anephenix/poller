@@ -1,5 +1,4 @@
-Poller
-======
+# Poller
 
 [![NPM version](https://badge.fury.io/js/poller.svg)](http://badge.fury.io/js/poller)
 [![Build Status](https://travis-ci.org/anephenix/poller.svg?branch=master)](https://travis-ci.org/Anephenix/poller)
@@ -11,33 +10,30 @@ Poller
 
 A FileSystem poller for Node.js
 
-Summary
----
+### Summary
 
 This was developed as a reliable alternative to using file watching libraries like Chokidar and Node Watch.
 
-Install
----
+### Install
 
     npm install poller
 
-Usage
----
+### Usage
 
 ```javascript
 // Require the library
-var poller = require('poller');
+const poller = require('poller');
 
 // Poll a file directory
-poller('/tmp/myFolder', function (err, poll) {
+poller('/tmp/myFolder', (err, poll) => {
 
     // Log every time a file is added into the folder
-    poll.on('add', function (filePath) {
+    poll.on('add', (filePath) => {
         console.log(filePath,'was added');
     });
 
     // Log every time a file is removed from the folder
-    poll.on('remove', function (filePath) {
+    poll.on('remove', (filePath) => {
         console.log(filePath,'was removed');
     });
 
@@ -46,14 +42,12 @@ poller('/tmp/myFolder', function (err, poll) {
 
 });
 
-
 // Poll a file directory at an interval of 50ms (the default is 100ms)
-poller('/tmp/myFolder', {interval: 50}, function (err, poll) {
+poller('/tmp/myFolder', {interval: 50}, (err, poll) => {
 
 });
 ```
 
-Licence and Rights
----
+### Licence and Rights
 
 &copy; 2016 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.

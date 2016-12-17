@@ -4,17 +4,17 @@
 
 // Dependencies
 //
-var _				= require('underscore');
-var eventEmitter	= require('events').EventEmitter;
-var fs				= require('fs');
+var _        = require('underscore');
+var eventEmitter  = require('events').EventEmitter;
+var fs        = require('fs');
 
 
 
 // Returns the poller function for calling from Node's require interface
 //
-// @param folderPath	String				The path for the folder
-// @param optionsOrCb   Object | Function	Either the options for the poller, or the function to execute once finished
-// @param cb			Function			The function to execute once finished
+// @param folderPath  String        The path for the folder
+// @param optionsOrCb   Object | Function  Either the options for the poller, or the function to execute once finished
+// @param cb      Function      The function to execute once finished
 //
 function poller (folderPath, optionsOrCb, cb) {
 
@@ -50,7 +50,7 @@ function poller (folderPath, optionsOrCb, cb) {
 			var poll = new eventEmitter();
 
 
-			// Get the initial list of files in the folder 
+			// Get the initial list of files in the folder
 			//
 			fs.readdir(folderPath, function (err, files) {
 
@@ -81,9 +81,9 @@ function poller (folderPath, optionsOrCb, cb) {
 							if (err) { throw err; }
 
 							// Get the list of files that have been added or removed
-							// 
-							var addedFiles		= _.difference(files, poll.files);
-							var removedFiles	= _.difference(poll.files, files);
+							//
+							var addedFiles    = _.difference(files, poll.files);
+							var removedFiles  = _.difference(poll.files, files);
 
 							if (addedFiles.length > 0) {
 								// Emit an add event with the full path of the added file
