@@ -4,9 +4,9 @@
 
 // Dependencies
 //
-var _        = require('underscore');
-var eventEmitter  = require('events').EventEmitter;
-var fs        = require('fs');
+const _        			= require('underscore');
+const eventEmitter  = require('events').EventEmitter;
+const fs        		= require('fs');
 
 
 
@@ -20,48 +20,46 @@ function poller (folderPath, optionsOrCb, cb) {
 
 	// We set the callback to the 2nd argument, if no options are passed
 	//
-	if (cb === undefined) { cb = optionsOrCb; }
+	if (cb === undefined) cb = optionsOrCb;
 
 	if (!folderPath) {
 
 		// return an error explaining that the user needs to pass a folder path as the 1st argument
 		//
-		var argumentType = typeof folderPath;
-		return cb(new Error('You need to pass a folder path, you passed an argument with type: ' + argumentType));
+		const argumentType = typeof folderPath;
+		return cb(new Error(`You need to pass a folder path, you passed an argument with type: ${argumentType}`));
 
 	}
 
-	fs.exists(folderPath, function (exists) {
+	fs.exists(folderPath, (exists) => {
 
 		// return an error if the folder does not exist
 		//
-		if (!exists) { return cb(new Error('This folder does not exist: ' + folderPath)); }
+		if (!exists) return cb(new Error(`This folder does not exist: ${folderPath}`));
 
-		fs.stat(folderPath, function (err, stats) {
+		fs.stat(folderPath, (err, stats) => {
 
-			if (err) { return cb(err); }
+			if (err) return cb(err);
 
 			// return an error if the path is not a folder
 			//
-			if (!stats.isDirectory()) { return cb(new Error('The path you passed is not a folder: ' + folderPath)); }
+			if (!stats.isDirectory()) return cb(new Error(`The path you passed is not a folder: ${folderPath}`));
 
 			// Generate a polling event emitter
 			//
-			var poll = new eventEmitter();
-
+			const poll = new eventEmitter();
 
 			// Get the initial list of files in the folder
 			//
-			fs.readdir(folderPath, function (err, files) {
+			fs.readdir(folderPath, (err, files) => {
 
 				poll.files = files;
 
-
 				// Setup the internal watch function
 				//
-				poll.watch = function () {
+				poll.watch = () => {
 
-					var interval;
+					let interval;
 
 					// If an interval option was passed, use that number as the interval,
 					// otherwise default to 100ms
@@ -74,27 +72,31 @@ function poller (folderPath, optionsOrCb, cb) {
 
 					// Setup the interval function
 					//
-					poll.timeout = setInterval(function () {
+					poll.timeout = setInterval(() => {
 
-						fs.readdir(folderPath, function (err, files) {
+						fs.readdir(folderPath, (err, files) => {
 
 							if (err) { throw err; }
 
 							// Get the list of files that have been added or removed
 							//
-							var addedFiles    = _.difference(files, poll.files);
-							var removedFiles  = _.difference(poll.files, files);
+							const addedFiles    = _.difference(files, poll.files);
+							const removedFiles  = _.difference(poll.files, files);
 
 							if (addedFiles.length > 0) {
 								// Emit an add event with the full path of the added file
 								//
-								addedFiles.forEach(function (addedFile) { poll.emit('add', folderPath + '/' + addedFile); });
+								addedFiles.forEach((addedFile) => {
+									poll.emit('add', `${folderPath}/${addedFile}`);
+								});
 							}
 
 							if (removedFiles.length > 0) {
 								// Emit a remove event with the full path of the removed file
 								//
-								removedFiles.forEach(function (removedFile) { poll.emit('remove', folderPath + '/' + removedFile); });
+								removedFiles.forEach((removedFile) => {
+									poll.emit('remove', `${folderPath}/${removedFile}`);
+								});
 							}
 
 							// Set the list of tracked files to the files that were polled
@@ -109,7 +111,7 @@ function poller (folderPath, optionsOrCb, cb) {
 
 				// Sets a function to allow the user to stop the polling
 				//
-				poll.close = function () {
+				poll.close = () => {
 					clearInterval(poll.timeout);
 				};
 

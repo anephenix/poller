@@ -4,42 +4,30 @@
 
 // Dependencies
 //
-var assert			= require('assert');
-var eventEmitter	= require('events').EventEmitter;
-var fs				= require('fs');
-var path			= require('path');
-var poller			= require('../index');
+const assert				= require('assert');
+const eventEmitter	= require('events').EventEmitter;
+const fs						= require('fs');
+const path					= require('path');
+const poller				= require('../index');
 
+describe('require("poller")', () => {
 
-
-describe('require("poller")', function () {
-
-
-
-	it('should return a function that can be used to poll a directory', function (done) {
+	it('should return a function that can be used to poll a directory', (done) => {
 
 		assert(typeof poller === 'function');
 		done();
 
 	});
 
-
-
 });
 
+describe('poller(path);', () => {
 
+	describe('when no folder path is passed', () => {
 
-describe('poller(path);', function () {
+		it('should return an error, warning the developer that they need to pass a folder path', (done) => {
 
-
-
-	describe('when no folder path is passed', function () {
-
-
-
-		it('should return an error, warning the developer that they need to pass a folder path', function (done) {
-
-			poller(undefined, function (err) {
+			poller(undefined, (err) => {
 				assert.notEqual(null, err);
 				assert.equal('You need to pass a folder path, you passed an argument with type: undefined', err.message);
 				done();
@@ -47,141 +35,107 @@ describe('poller(path);', function () {
 
 		});
 
-
-
 	});
 
+	describe('when a non-existent folder path is passed', () => {
 
+		it('should return an error, warning the developer that the folder path does not exist', (done) => {
 
-	describe('when a non-existent folder path is passed', function () {
-
-
-
-		it('should return an error, warning the developer that the folder path does not exist', function (done) {
-
-			var nonExistentFolder = '/tmp/non-existent';
-			poller(nonExistentFolder, function (err) {
+			const nonExistentFolder = '/tmp/non-existent';
+			poller(nonExistentFolder, (err) => {
 				assert.notEqual(null, err);
-				assert.equal('This folder does not exist: '+nonExistentFolder, err.message);
+				assert.equal(`This folder does not exist: ${nonExistentFolder}`, err.message);
 				done();
 			});
 
 		});
 
-
-
 	});
 
+	describe('when an invalid folder path is passed', () => {
 
+		it('should return an error, warning the developer that the folder path is not a folder', (done) => {
 
-	describe('when an invalid folder path is passed', function () {
-
-
-
-		it('should return an error, warning the developer that the folder path is not a folder', function (done) {
-
-			var notaFolderPath = __filename;
-			poller(notaFolderPath, function (err) {
+			const notaFolderPath = __filename;
+			poller(notaFolderPath, (err) => {
 				assert.notEqual(null, err);
-				assert.equal('The path you passed is not a folder: ' + notaFolderPath, err.message);
+				assert.equal(`The path you passed is not a folder: ${notaFolderPath}`, err.message);
 				done();
 			});
 
 		});
 
-
-
 	});
 
+	describe('when passed a valid folder path', () => {
 
+		it('should return an event emitter', (done) => {
 
-	describe('when passed a valid folder path', function () {
-
-
-
-		it('should return an event emitter', function (done) {
-
-			var folderPath = path.join(__dirname, './example');
-			poller(folderPath, function (err, poll) {
+			const folderPath = path.join(__dirname, './example');
+			poller(folderPath, (err, poll) => {
 				assert.equal(null, err);
 				assert(poll instanceof eventEmitter);
 				assert(typeof poll === 'object');
 				done();
 			});
 
-
 		});
 
+		describe('when a file is added within the folder', () => {
 
+			beforeEach((done) => {
 
-		describe('when a file is added within the folder', function () {
+				const folderPath = path.join(__dirname, './example');
+				const filePath   = path.join(folderPath,'testFile.txt');
 
-
-			beforeEach(function (done) {
-
-				var folderPath = path.join(__dirname, './example');
-				var filePath   = path.join(folderPath,'testFile.txt');
-
-				fs.exists(filePath, function (exists) {
-					if (exists) {
-						return fs.unlink(filePath, done);
-					}
-
+				fs.exists(filePath, (exists) => {
+					if (exists) return fs.unlink(filePath, done);
 					done();
 				});
 
-
 			});
 
+			it('should emit an add event from the poll event emitter', (done) => {
 
+				const folderPath = path.join(__dirname, './example');
+				const filePath   = path.join(folderPath,'testFile.txt');
+				poller(folderPath, (err, poll) => {
 
-			it('should emit an add event from the poll event emitter', function (done) {
-
-				var folderPath = path.join(__dirname, './example');
-				var filePath   = path.join(folderPath,'testFile.txt');
-				poller(folderPath, function (err, poll) {
-
-					poll.on('add', function (addedFilePath) {
+					poll.on('add', (addedFilePath) => {
 						assert.equal(filePath, addedFilePath);
 						done();
 					});
 
-					fs.writeFile(filePath, 'Hello World', function (err) {
-						if (err) { throw err; }
+					fs.writeFile(filePath, 'Hello World', (err) => {
+						if (err) throw err;
 					});
 
 				});
 
 			});
 
-
-
 		});
 
+		describe('when a file is removed from within the folder', () => {
 
+			it('should emit a remove event from the poll event emitter', (done) => {
 
-		describe('when a file is removed from within the folder', function () {
+				const folderPath = path.join(__dirname, './example');
+				const filePath   = path.join(folderPath,'testFile.txt');
 
+				fs.writeFile(filePath, 'Hello World', (err) => {
 
+					if (err) throw err;
 
-			it('should emit a remove event from the poll event emitter', function (done) {
+					poller(folderPath, (err, poll) => {
 
-				var folderPath = path.join(__dirname, './example');
-				var filePath   = path.join(folderPath,'testFile.txt');
-
-				fs.writeFile(filePath, 'Hello World', function (err) {
-
-					if (err) { throw err; }
-
-					poller(folderPath, function (err, poll) {
-
-						poll.on('remove', function (removedFilePath) {
+						poll.on('remove', (removedFilePath) => {
 							assert.equal(filePath, removedFilePath);
 							done();
 						});
 
-						fs.unlink(filePath, function (err) {
-							if (err) { done(err); }
+						fs.unlink(filePath, (err) => {
+							if (err) done(err);
 						});
 
 					});
@@ -190,23 +144,17 @@ describe('poller(path);', function () {
 
 			});
 
-
-
 		});
 
+		describe('poll.close();', () => {
 
+			it('should clear the timeout so that we are not polling the folder anymore', (done) => {
 
-		describe('poll.close();', function () {
+				const folderPath = path.join(__dirname, './example');
 
+				poller(folderPath, (err, poll) => {
 
-
-			it('should clear the timeout so that we are not polling the folder anymore', function (done) {
-
-				var folderPath = path.join(__dirname, './example');
-
-				poller(folderPath, function (err, poll) {
-
-					poll.on('add', function () {
+					poll.on('add', () => {
 						done(new Error('a file add was recorded when it should not have'));
 					});
 
@@ -220,38 +168,25 @@ describe('poller(path);', function () {
 
 				});
 
-
 			});
-
-
 
 		});
 
-
-
 	});
-
-
 
 });
 
+describe('poller(path, {options});', () => {
 
+	describe('interval option', () => {
 
-describe('poller(path, {options});', function () {
+		it('should allow the user to control the interval time between polling checks', (done) => {
 
+			const folderPath = path.join(__dirname, './example');
 
+			poller(folderPath, {interval: 50}, (err, poll) => {
 
-	describe('interval option', function () {
-
-
-
-		it('should allow the user to control the interval time between polling checks', function (done) {
-
-			var folderPath = path.join(__dirname, './example');
-
-			poller(folderPath, {interval: 50}, function (err, poll) {
-
-				poll.on('add', function () {
+				poll.on('add', () => {
 					done(new Error('a file add was recorded when it should not have'));
 				});
 
@@ -260,13 +195,8 @@ describe('poller(path, {options});', function () {
 
 			});
 
-
 		});
 
-
-
 	});
-
-
 
 });
