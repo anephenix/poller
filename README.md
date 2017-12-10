@@ -1,5 +1,9 @@
 # Poller
 
+<<<<<<< HEAD
+=======
+[![Greenkeeper badge](https://badges.greenkeeper.io/anephenix/poller.svg)](https://greenkeeper.io/)
+>>>>>>> d7ccb11... Tweaks
 [![NPM version](https://badge.fury.io/js/poller.svg)](http://badge.fury.io/js/poller)
 [![Build Status](https://travis-ci.org/anephenix/poller.svg?branch=master)](https://travis-ci.org/Anephenix/poller)
 [![Dependency Status](https://david-dm.org/anephenix/poller.svg)](https://david-dm.org/anephenix/poller)
@@ -26,28 +30,24 @@ const poller = require('poller');
 
 // Poll a file directory
 poller('/tmp/myFolder', (err, poll) => {
+	// Log every time a file is added into the folder
+	poll.on('add', filePath => {
+		console.log(filePath, 'was added');
+	});
 
-    // Log every time a file is added into the folder
-    poll.on('add', (filePath) => {
-        console.log(filePath,'was added');
-    });
+	// Log every time a file is removed from the folder
+	poll.on('remove', filePath => {
+		console.log(filePath, 'was removed');
+	});
 
-    // Log every time a file is removed from the folder
-    poll.on('remove', (filePath) => {
-        console.log(filePath,'was removed');
-    });
-
-    // Stop polling the folder for file adds/removals
-    poll.close();
-
+	// Stop polling the folder for file adds/removals
+	poll.close();
 });
 
 // Poll a file directory at an interval of 50ms (the default is 100ms)
-poller('/tmp/myFolder', {interval: 50}, (err, poll) => {
-
-});
+poller('/tmp/myFolder', { interval: 50 }, (err, poll) => {});
 ```
 
 ### Licence and Rights
 
-&copy; 2016 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
+&copy; 2017 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
