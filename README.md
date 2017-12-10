@@ -1,9 +1,6 @@
 # Poller
 
-<<<<<<< HEAD
-=======
 [![Greenkeeper badge](https://badges.greenkeeper.io/anephenix/poller.svg)](https://greenkeeper.io/)
->>>>>>> d7ccb11... Tweaks
 [![NPM version](https://badge.fury.io/js/poller.svg)](http://badge.fury.io/js/poller)
 [![Build Status](https://travis-ci.org/anephenix/poller.svg?branch=master)](https://travis-ci.org/Anephenix/poller)
 [![Dependency Status](https://david-dm.org/anephenix/poller.svg)](https://david-dm.org/anephenix/poller)
