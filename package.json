@@ -5,12 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"coveralls":
-			"NODE_ENV=test node_modules/.bin/istanbul cover node_modules/.bin/_mocha test/* --test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+			"NODE_ENV=test node_modules/.bin/istanbul cover node_modules/.bin/_mocha test/* --test --exit && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
 		"cover":
-			"NODE_ENV=test node_modules/.bin/istanbul cover node_modules/.bin/_mocha test/* --test",
+			"NODE_ENV=test node_modules/.bin/istanbul cover node_modules/.bin/_mocha test/* --test --exit",
 		"lint": "eslint index.js test/index.test.js",
 		"notes": "node_modules/.bin/notes .",
-		"test": "NODE_ENV=test node_modules/.bin/mocha test/* --test"
+		"test": "NODE_ENV=test node_modules/.bin/mocha test/* --test --exit"
 	},
 	"repository": {
 		"type": "git",
