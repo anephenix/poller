@@ -47,4 +47,4 @@ poller('/tmp/myFolder', { interval: 50 }, (err, poll) => {});
 
 ### Licence and Rights
 
-&copy; 2017 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
+&copy; 2018 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
