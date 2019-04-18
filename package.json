@@ -27,7 +27,7 @@
 		"coveralls": "^3.0.0",
 		"eslint": "5.16.0",
 		"istanbul": "^0.4.5",
-		"mocha": "6.1.3",
+		"mocha": "6.1.4",
 		"mocha-lcov-reporter": "^1.3.0",
 		"notes": "git://github.com/anephenix/node-notes.git"
 	},
