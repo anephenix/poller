@@ -1,37 +1,37 @@
 {
-	"name": "poller",
-	"version": "0.0.5",
-	"description": "A FileSystem poller for Node.js",
-	"main": "index.js",
-	"scripts": {
-		"coveralls": "NODE_ENV=test npx istanbul cover node_modules/.bin/_mocha test/* --test -- --exit && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-		"cover": "NODE_ENV=test npx istanbul cover node_modules/.bin/_mocha test/* --test -- --exit",
-		"lint": "eslint index.js test/index.test.js",
-		"notes": "npx notes .",
-		"test": "NODE_ENV=test npx mocha test/* --test --exit"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/anephenix/poller.git"
-	},
-	"keywords": [
-		"fs"
-	],
-	"author": "Paul Jensen <paul@anephenix.com>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/anephenix/poller/issues"
-	},
-	"homepage": "https://github.com/anephenix/poller",
-	"devDependencies": {
-		"coveralls": "^3.0.0",
-		"eslint": "6.8.0",
-		"istanbul": "^0.4.5",
-		"mocha": "7.1.0",
-		"mocha-lcov-reporter": "^1.3.0",
-		"notes": "git://github.com/anephenix/node-notes.git"
-	},
-	"dependencies": {
-		"underscore": "1.9.2"
-	}
+  "name": "poller",
+  "version": "0.0.5",
+  "description": "A FileSystem poller for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "coveralls": "NODE_ENV=test npx nyc npm t && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "cover": "NODE_ENV=test npx nyc npm t",
+    "lint": "eslint index.js test/index.test.js",
+    "notes": "npx notes .",
+    "test": "NODE_ENV=test npx mocha test/* --test --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anephenix/poller.git"
+  },
+  "keywords": [
+    "fs"
+  ],
+  "author": "Paul Jensen <paul@anephenix.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anephenix/poller/issues"
+  },
+  "homepage": "https://github.com/anephenix/poller",
+  "devDependencies": {
+    "coveralls": "^3.0.11",
+    "eslint": "6.8.0",
+    "mocha": "7.1.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "notes": "git://github.com/anephenix/node-notes.git",
+    "nyc": "^15.0.0"
+  },
+  "dependencies": {
+    "underscore": "1.9.2"
+  }
 }
