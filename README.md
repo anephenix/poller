@@ -1,7 +1,7 @@
 # Poller
 
 [![NPM version](https://badge.fury.io/js/poller.svg)](http://badge.fury.io/js/poller)
-[![Node.js CI](https://github.com/anephenix/poller/actions/workflows/node.js.yml/badge.svg)](https://github.com/anephenix/poller/actions/workflows/node.js.yml) [![Test Coverage](https://api.codeclimate.com/v1/badges/a8b5b2684c4c411d7055/test_coverage)](https://codeclimate.com/github/anephenix/poller/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/a8b5b2684c4c411d7055/maintainability)](https://codeclimate.com/github/anephenix/poller/maintainability) [![Socket Badge](https://socket.dev/api/badge/npm/package/poller)](https://socket.dev/npm/package/poller)
+[![Node.js CI](https://github.com/anephenix/poller/actions/workflows/node.js.yml/badge.svg)](https://github.com/anephenix/poller/actions/workflows/node.js.yml) [![Test Coverage](https://api.codeclimate.com/v1/badges/a8b5b2684c4c411d7055/test_coverage)](https://codeclimate.com/github/Anephenix/poller/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/a8b5b2684c4c411d7055/maintainability)](https://codeclimate.com/github/Anephenix/poller/maintainability) [![Socket Badge](https://socket.dev/api/badge/npm/package/poller)](https://socket.dev/npm/package/poller)
 
 
 A FileSystem poller for Node.js.
