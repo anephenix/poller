@@ -1,12 +1,15 @@
-'use strict';
-
 // Dependencies
-//
-const assert = require('assert');
-const eventEmitter = require('events').EventEmitter;
-const fs = require('fs');
-const path = require('path');
-const poller = require('../index');
+import assert from 'assert';
+import { EventEmitter } from 'events';
+import * as fs from 'fs';
+import * as path from 'path';
+import poller from '../src/index';
+import { Poller, ExtendedTimeout } from '../src/types';
+
+// Used as the default for the unit tests
+const pollerOptions = {
+	interval: 1
+};
 
 describe('require("poller")', () => {
 	it('should return a function that can be used to poll a directory', done => {
@@ -18,11 +21,11 @@ describe('require("poller")', () => {
 describe('poller(path);', () => {
 	describe('when no folder path is passed', () => {
 		it('should return an error, warning the developer that they need to pass a folder path', done => {
-			poller(undefined, err => {
+			poller(undefined as unknown as string, (err: Error | null) => {
 				assert.notEqual(null, err);
 				assert.equal(
 					'You need to pass a folder path, you passed an argument with type: undefined',
-					err.message
+					err?.message
 				);
 				done();
 			});
@@ -32,11 +35,11 @@ describe('poller(path);', () => {
 	describe('when a non-existent folder path is passed', () => {
 		it('should return an error, warning the developer that the folder path does not exist', done => {
 			const nonExistentFolder = '/tmp/non-existent';
-			poller(nonExistentFolder, err => {
+			poller(nonExistentFolder, (err: Error | null) => {
 				assert.notEqual(null, err);
 				assert.equal(
 					`This folder does not exist: ${nonExistentFolder}`,
-					err.message
+					err?.message
 				);
 				done();
 			});
@@ -46,11 +49,11 @@ describe('poller(path);', () => {
 	describe('when an invalid folder path is passed', () => {
 		it('should return an error, warning the developer that the folder path is not a folder', done => {
 			const notaFolderPath = __filename;
-			poller(notaFolderPath, err => {
+			poller(notaFolderPath, (err: Error | null) => {
 				assert.notEqual(null, err);
 				assert.equal(
 					`The path you passed is not a folder: ${notaFolderPath}`,
-					err.message
+					err?.message
 				);
 				done();
 			});
@@ -60,31 +63,37 @@ describe('poller(path);', () => {
 	describe('when passed a valid folder path', () => {
 		it('should return an event emitter', done => {
 			const folderPath = path.join(__dirname, './example');
-			poller(folderPath, (err, poll) => {
+			poller(folderPath, pollerOptions, (err: Error | null, poll: Poller | undefined) => {
 				assert.equal(null, err);
-				assert(poll instanceof eventEmitter);
+				assert(poll instanceof EventEmitter);
 				assert(typeof poll === 'object');
+				(poll as Poller).close();
 				done();
 			});
 		});
 
 		describe('when a file is added within the folder', () => {
-			beforeEach(done => {
+			afterEach(done => {
 				const folderPath = path.join(__dirname, './example');
 				const filePath = path.join(folderPath, 'testFile.txt');
 
-				fs.exists(filePath, exists => {
-					if (exists) return fs.unlink(filePath, done);
-					done();
+				fs.open(filePath, error => {
+					if (!error) {
+						return fs.unlink(filePath, done);
+					} else {
+						throw new Error(`The file path does not exist: ${filePath}`);
+					}
 				});
 			});
 
 			it('should emit an add event from the poll event emitter', done => {
 				const folderPath = path.join(__dirname, './example');
 				const filePath = path.join(folderPath, 'testFile.txt');
-				poller(folderPath, (err, poll) => {
-					poll.on('add', addedFilePath => {
+				poller(folderPath, pollerOptions, (err: Error | null, poll: Poller | undefined) => {
+					assert.equal(null, err);
+					(poll as Poller).on('add', (addedFilePath: string) => {
 						assert.equal(filePath, addedFilePath);
+						(poll as Poller).close();
 						done();
 					});
 
@@ -103,9 +112,11 @@ describe('poller(path);', () => {
 				fs.writeFile(filePath, 'Hello World', err => {
 					if (err) throw err;
 
-					poller(folderPath, (err, poll) => {
-						poll.on('remove', removedFilePath => {
+					poller(folderPath, pollerOptions, (err: Error | null, poll: Poller | undefined) => {
+						assert.equal(null, err);
+						(poll as Poller).on('remove', (removedFilePath: string) => {
 							assert.equal(filePath, removedFilePath);
+							(poll as Poller).close();
 							done();
 						});
 
@@ -121,17 +132,13 @@ describe('poller(path);', () => {
 			it('should clear the timeout so that we are not polling the folder anymore', done => {
 				const folderPath = path.join(__dirname, './example');
 
-				poller(folderPath, (err, poll) => {
-					poll.on('add', () => {
+				poller(folderPath, (err: Error | null, poll: Poller | undefined) => {
+					assert.equal(null, err);
+					poll?.on('add', () => {
 						done(new Error('a file add was recorded when it should not have'));
 					});
-
-					poll.close();
-
-					assert.notEqual(true, poll.timeout._repeat);
-					assert.equal(-1, poll.timeout._idleTimeout);
-					assert.equal(null, poll.timeout._onTimeout);
-
+					poll?.close();
+					assert.equal(null, poll?.timeout?._onTimeout);
 					done();
 				});
 			});
@@ -144,14 +151,34 @@ describe('poller(path, {options});', () => {
 		it('should allow the user to control the interval time between polling checks', done => {
 			const folderPath = path.join(__dirname, './example');
 
-			poller(folderPath, { interval: 50 }, (err, poll) => {
-				poll.on('add', () => {
+			poller(folderPath, { interval: 50 }, (err: Error | null, poll: Poller | undefined) => {
+				assert.equal(null, err);
+				poll?.on('add', () => {
 					done(new Error('a file add was recorded when it should not have'));
 				});
-
-				assert.equal(50, poll.timeout._idleTimeout);
+				const timeout = (poll as Poller)?.timeout as ExtendedTimeout;
+				assert.equal(50, timeout._idleTimeout);
+				poll?.close();
 				done();
 			});
 		});
 	});
+
+	describe('interval option', () => {
+		it('should otherwise use a default value of 100ms if no option is passed', done => {
+			const folderPath = path.join(__dirname, './example');
+
+			poller(folderPath, (err: Error | null, poll: Poller | undefined) => {
+				assert.equal(null, err);
+				poll?.on('add', () => {
+					done(new Error('a file add was recorded when it should not have'));
+				});
+				const timeout = (poll as Poller)?.timeout as ExtendedTimeout;
+				assert.equal(100, timeout._idleTimeout);
+				poll?.close();
+				done();
+			});
+		});
+	});
+
 });

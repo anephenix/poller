@@ -4,11 +4,14 @@
   "description": "A FileSystem poller for Node.js",
   "main": "index.js",
   "scripts": {
-    "coveralls": "NODE_ENV=test npx nyc npm t && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "cover": "NODE_ENV=test npx nyc npm t",
-    "lint": "eslint index.js test/index.test.js",
-    "notes": "npx notes .",
-    "test": "NODE_ENV=test npx mocha test/* --test --exit"
+    "build": "tsc --project tsconfig.json",
+    "cover": "NODE_ENV=test npx nyc --reporter=lcov npm t",
+    "lint": "npx eslint .",
+    "prepare-patch-release": "npm run build && npm run size && npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
+    "publish-patch-release": "npm run prepare-patch-release && git push origin master && git push --tags",
+    "size": "size-limit",
+    "test": "NODE_ENV=test npx mocha --require ts-node/register --extensions ts test/**/* ",
+    "update-changelog": "npx ts-node scripts/update-changelog.ts"
   },
   "repository": {
     "type": "git",
@@ -24,14 +27,21 @@
   },
   "homepage": "https://github.com/anephenix/poller",
   "devDependencies": {
-    "coveralls": "^3.0.11",
-    "eslint": "6.8.0",
+    "@eslint/js": "^9.23.0",
+    "@types/mocha": "^10.0.10",
+    "eslint": "^9.23.0",
     "mocha": "10.8.2",
     "mocha-lcov-reporter": "^1.3.0",
-    "notes": "git://github.com/anephenix/node-notes.git",
-    "nyc": "^15.0.0"
+    "nyc": "^15.0.0",
+    "size-limit": "^11.2.0",
+    "size-limit-preset-node-lib": "^0.3.0",
+    "ts-node": "^10.9.2",
+    "typescript-eslint": "^8.29.0"
   },
-  "dependencies": {
-    "underscore": "1.12.1"
-  }
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "10 kB"
+    }
+  ]
 }

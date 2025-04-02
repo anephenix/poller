@@ -1,19 +1,14 @@
 # Poller
 
-
 [![NPM version](https://badge.fury.io/js/poller.svg)](http://badge.fury.io/js/poller)
-[![Build Status](https://travis-ci.org/anephenix/poller.svg?branch=master)](https://travis-ci.org/Anephenix/poller)
-[![Dependency Status](https://david-dm.org/anephenix/poller.svg)](https://david-dm.org/anephenix/poller)
-[![devDependency Status](https://david-dm.org/anephenix/poller/dev-status.svg)](https://david-dm.org/anephenix/poller#info=devDependencies)
-[![Coverage Status](https://img.shields.io/coveralls/anephenix/poller.svg)](https://coveralls.io/r/Anephenix/poller?branch=master)
-[![Code Climate](https://codeclimate.com/github/Anephenix/poller.svg)](https://codeclimate.com/github/Anephenix/poller)
-[![Codacy Badge](https://www.codacy.com/project/badge/30844a27cd944d5c8ed7770a5280ea4f)](https://www.codacy.com/public/Anephenix/poller.git)
+[![Node.js CI](https://github.com/anephenix/poller/actions/workflows/node.js.yml/badge.svg)](https://github.com/anephenix/poller/actions/workflows/node.js.yml) [![Test Coverage](https://api.codeclimate.com/v1/badges/a8b5b2684c4c411d7055/test_coverage)](https://codeclimate.com/github/anephenix/poller/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/a8b5b2684c4c411d7055/maintainability)](https://codeclimate.com/github/anephenix/poller/maintainability) [![Socket Badge](https://socket.dev/api/badge/npm/package/poller)](https://socket.dev/npm/package/poller)
 
-A FileSystem poller for Node.js
 
-### Summary
+A FileSystem poller for Node.js.
 
-This was developed as a reliable alternative to using file watching libraries like Chokidar and Node Watch.
+### Dependencies
+
+- Node.js (v22+)
 
 ### Install
 
@@ -47,4 +42,4 @@ poller('/tmp/myFolder', { interval: 50 }, (err, poll) => {});
 
 ### Licence and Rights
 
-&copy; 2018 Anephenix Ltd. Poller is licenced under the MIT license. - See LICENSE for details.
+&copy; 2025 Anephenix OÜ. Poller is licenced under the [MIT license](/LICENSE).
