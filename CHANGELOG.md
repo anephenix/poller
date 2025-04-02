@@ -1,5 +1,10 @@
 Changelog
 ===
+### 0.0.6 - Wednesday 2nd April, 2025
+
+- Added Husky hooks
+- Updated dependencies and converted the library to TypeScript
+
 
 0.0.5 - 2017-06-17-1257
 -----------------------
