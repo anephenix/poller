@@ -1,5 +1,128 @@
 Changelog
 ===
+### 0.0.9 - Tuesday 6th January, 2026
+
+- Updated the publish.yml file for the new publish workflow
+- Merge pull request #156 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.52.0
+- build(deps-dev): bump typescript-eslint from 8.51.0 to 8.52.0
+- Merge pull request #155 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.51.0
+- build(deps-dev): bump typescript-eslint from 8.50.1 to 8.51.0
+- Updated dependencies
+- Merge pull request #154 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.50.1
+- build(deps-dev): bump typescript-eslint from 8.50.0 to 8.50.1
+- Merge pull request #151 from anephenix/dependabot/npm_and_yarn/eslint-9.39.2
+- Merge pull request #153 from anephenix/dependabot/npm_and_yarn/eslint/js-9.39.2
+- Merge pull request #152 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.50.0
+- build(deps-dev): bump @eslint/js from 9.39.1 to 9.39.2
+- build(deps-dev): bump typescript-eslint from 8.49.0 to 8.50.0
+- build(deps-dev): bump eslint from 9.39.1 to 9.39.2
+- Merge pull request #150 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.49.0
+- build(deps-dev): bump typescript-eslint from 8.48.0 to 8.49.0
+- Updated size-limit dependency
+- Merge pull request #148 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.48.0
+- build(deps-dev): bump typescript-eslint from 8.47.0 to 8.48.0
+- Merge pull request #147 from anephenix/dependabot/npm_and_yarn/glob-10.5.0
+- build(deps): bump glob from 10.4.5 to 10.5.0
+- Merge pull request #146 from anephenix/dependabot/npm_and_yarn/js-yaml-3.14.2
+- build(deps-dev): bump js-yaml from 3.14.1 to 3.14.2
+- Merge pull request #145 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.47.0
+- build(deps-dev): bump typescript-eslint from 8.46.4 to 8.47.0
+- Merge pull request #143 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.46.4
+- Merge pull request #142 from anephenix/dependabot/npm_and_yarn/mocha-11.7.5
+- Merge pull request #141 from anephenix/dependabot/npm_and_yarn/eslint-9.39.1
+- build(deps-dev): bump typescript-eslint from 8.46.3 to 8.46.4
+- build(deps-dev): bump mocha from 11.7.4 to 11.7.5
+- build(deps-dev): bump eslint from 9.39.0 to 9.39.1
+- Updated dependencies
+- Merge pull request #139 from anephenix/dependabot/npm_and_yarn/eslint/js-9.39.0
+- Merge pull request #138 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.46.3
+- Merge pull request #140 from anephenix/dependabot/npm_and_yarn/eslint-9.39.0
+- build(deps-dev): bump eslint from 9.38.0 to 9.39.0
+- build(deps-dev): bump @eslint/js from 9.38.0 to 9.39.0
+- build(deps-dev): bump typescript-eslint from 8.46.2 to 8.46.3
+- Merge pull request #137 from anephenix/dependabot/npm_and_yarn/eslint-9.38.0
+- build(deps-dev): bump eslint from 9.37.0 to 9.38.0
+- Merge pull request #136 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.46.2
+- Merge pull request #135 from anephenix/dependabot/npm_and_yarn/eslint/js-9.38.0
+- build(deps-dev): bump typescript-eslint from 8.46.1 to 8.46.2
+- build(deps-dev): bump @eslint/js from 9.37.0 to 9.38.0
+- Merge pull request #134 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.46.1
+- build(deps-dev): bump typescript-eslint from 8.46.0 to 8.46.1
+- Merge pull request #132 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.46.0
+- Merge pull request #130 from anephenix/dependabot/npm_and_yarn/eslint/js-9.37.0
+- Merge pull request #133 from anephenix/dependabot/npm_and_yarn/eslint-9.37.0
+- Merge pull request #131 from anephenix/dependabot/npm_and_yarn/mocha-11.7.4
+- build(deps-dev): bump eslint from 9.36.0 to 9.37.0
+- build(deps-dev): bump typescript-eslint from 8.45.0 to 8.46.0
+- build(deps-dev): bump mocha from 11.7.2 to 11.7.4
+- build(deps-dev): bump @eslint/js from 9.36.0 to 9.37.0
+- Merge pull request #129 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.45.0
+- build(deps-dev): bump typescript-eslint from 8.44.1 to 8.45.0
+- Merge pull request #128 from anephenix/dependabot/npm_and_yarn/eslint/js-9.36.0
+- Merge pull request #127 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.44.1
+- Merge pull request #126 from anephenix/dependabot/npm_and_yarn/eslint-9.36.0
+- build(deps-dev): bump @eslint/js from 9.35.0 to 9.36.0
+- build(deps-dev): bump typescript-eslint from 8.44.0 to 8.44.1
+- build(deps-dev): bump eslint from 9.35.0 to 9.36.0
+- Merge pull request #125 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.44.0
+- build(deps-dev): bump typescript-eslint from 8.43.0 to 8.44.0
+- Merge pull request #124 from anephenix/dependabot/npm_and_yarn/eslint-9.35.0
+- Merge pull request #123 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.43.0
+- Merge pull request #122 from anephenix/dependabot/npm_and_yarn/mocha-11.7.2
+- build(deps-dev): bump eslint from 9.34.0 to 9.35.0
+- build(deps-dev): bump mocha from 11.7.1 to 11.7.2
+- build(deps-dev): bump typescript-eslint from 8.41.0 to 8.43.0
+- Merge pull request #121 from anephenix/dependabot/npm_and_yarn/eslint/js-9.35.0
+- build(deps-dev): bump @eslint/js from 9.34.0 to 9.35.0
+- Merge pull request #120 from anephenix/dependabot/npm_and_yarn/eslint-9.34.0
+- Merge pull request #119 from anephenix/dependabot/npm_and_yarn/eslint/js-9.34.0
+- build(deps-dev): bump eslint from 9.33.0 to 9.34.0
+- build(deps-dev): bump @eslint/js from 9.33.0 to 9.34.0
+- Merge pull request #118 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.41.0
+- build(deps-dev): bump typescript-eslint from 8.40.0 to 8.41.0
+- Merge pull request #117 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.40.0
+- build(deps-dev): bump typescript-eslint from 8.39.1 to 8.40.0
+- Merge pull request #116 from anephenix/dependabot/npm_and_yarn/eslint/js-9.33.0
+- build(deps-dev): bump @eslint/js from 9.32.0 to 9.33.0
+- Merge pull request #115 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.39.1
+- Merge pull request #114 from anephenix/dependabot/npm_and_yarn/eslint-9.33.0
+- build(deps-dev): bump typescript-eslint from 8.39.0 to 8.39.1
+- build(deps-dev): bump eslint from 9.32.0 to 9.33.0
+- Merge pull request #113 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.39.0
+- build(deps-dev): bump typescript-eslint from 8.38.0 to 8.39.0
+- Merge pull request #112 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.38.0
+- Merge pull request #110 from anephenix/dependabot/npm_and_yarn/eslint-9.32.0
+- build(deps-dev): bump typescript-eslint from 8.37.0 to 8.38.0
+- build(deps-dev): bump eslint from 9.31.0 to 9.32.0
+- Merge pull request #109 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.37.0
+- Merge pull request #108 from anephenix/dependabot/npm_and_yarn/eslint-9.31.0
+- Merge pull request #107 from anephenix/dependabot/npm_and_yarn/eslint/js-9.31.0
+- build(deps-dev): bump typescript-eslint from 8.36.0 to 8.37.0
+- build(deps-dev): bump eslint from 9.30.1 to 9.31.0
+- build(deps-dev): bump @eslint/js from 9.30.1 to 9.31.0
+- Merge pull request #106 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.36.0
+- build(deps-dev): bump typescript-eslint from 8.35.1 to 8.36.0
+- Updated dependencies
+- Merge pull request #105 from anephenix/dependabot/npm_and_yarn/eslint-9.30.0
+- Merge pull request #104 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.35.1
+- Merge pull request #103 from anephenix/dependabot/npm_and_yarn/eslint/js-9.30.0
+- Merge pull request #102 from anephenix/dependabot/npm_and_yarn/mocha-11.7.1
+- build(deps-dev): bump eslint from 9.29.0 to 9.30.0
+- build(deps-dev): bump typescript-eslint from 8.35.0 to 8.35.1
+- build(deps-dev): bump @eslint/js from 9.29.0 to 9.30.0
+- build(deps-dev): bump mocha from 11.7.0 to 11.7.1
+- Merge pull request #101 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.35.0
+- Merge pull request #100 from anephenix/dependabot/npm_and_yarn/mocha-11.7.0
+- build(deps-dev): bump typescript-eslint from 8.34.1 to 8.35.0
+- build(deps-dev): bump mocha from 11.6.0 to 11.7.0
+- Merge pull request #99 from anephenix/dependabot/npm_and_yarn/eslint/js-9.29.0
+- Merge pull request #98 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.34.1
+- Merge pull request #97 from anephenix/dependabot/npm_and_yarn/eslint-9.29.0
+- build(deps-dev): bump @eslint/js from 9.28.0 to 9.29.0
+- build(deps-dev): bump typescript-eslint from 8.34.0 to 8.34.1
+- build(deps-dev): bump eslint from 9.28.0 to 9.29.0
+- Removed CodeClimate and updated dependencies
+
 ### 0.0.8 - Tuesday 10th June, 2025
 
 - Merge pull request #96 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.34.0
