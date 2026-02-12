@@ -4,5 +4,5 @@
 */
 export function difference<T>(array: T[], ...others: T[][]): T[] {
 	const otherValues = new Set(others.flat());
-	return array.filter(item => !otherValues.has(item));
+	return array.filter((item) => !otherValues.has(item));
 }

@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import type { EventEmitter } from "node:events";
 
 // Types and Interfaces
 export interface Poller extends EventEmitter {
@@ -17,15 +17,13 @@ export interface PollerOptions {
 	interval?: number;
 }
 
-export interface PollerCallback {
-	// The function to execute once finished
-	(err: Error | null, poll?: Poller): void;
-}
+// The function to execute once finished
+export type PollerCallback = (err: Error | null, poll?: Poller) => void;
 
 /*
 	We use this to help inspect internals to check the interval amount in one 
 	of our unit tests.
 */
 export interface ExtendedTimeout extends NodeJS.Timeout {
-  _idleTimeout: number;
+	_idleTimeout: number;
 }
