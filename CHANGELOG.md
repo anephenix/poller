@@ -1,5 +1,16 @@
 Changelog
 ===
+### 0.0.10 - Thursday 12th February, 2026
+
+- Replaced eslint with biome
+- Updated dependencies
+- Merge pull request #159 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.54.0
+- build(deps-dev): bump typescript-eslint from 8.53.1 to 8.54.0
+- Merge pull request #158 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.53.1
+- build(deps-dev): bump typescript-eslint from 8.53.0 to 8.53.1
+- Merge pull request #157 from anephenix/dependabot/npm_and_yarn/typescript-eslint-8.53.0
+- build(deps-dev): bump typescript-eslint from 8.52.0 to 8.53.0
+
 ### 0.0.9 - Tuesday 6th January, 2026
 
 - Updated the publish.yml file for the new publish workflow
