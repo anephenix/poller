@@ -1,5 +1,16 @@
 Changelog
 ===
+### 0.0.11 - Sunday 1st March, 2026
+
+- Resolved running npm run build
+- Replaced mocha with vitest
+- Merge pull request #165 from anephenix/dependabot/npm_and_yarn/multi-770cfcd984
+- build(deps): bump minimatch
+- Merge pull request #164 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.4
+- build(deps-dev): bump @biomejs/biome from 2.4.1 to 2.4.4
+- Merge pull request #163 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.1
+- build(deps-dev): bump @biomejs/biome from 2.3.15 to 2.4.1
+
 ### 0.0.10 - Thursday 12th February, 2026
 
 - Replaced eslint with biome
