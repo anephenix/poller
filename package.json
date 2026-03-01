@@ -1,45 +1,48 @@
 {
-  "name": "poller",
-  "version": "0.0.10",
-  "description": "A FileSystem poller for Node.js",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "cover": "NODE_ENV=test npx vitest --coverage --run",
-    "lint": "npx @biomejs/biome check .",
-    "prepare-patch-release": "npm run build && npm run size && npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
-    "publish-patch-release": "npm run prepare-patch-release && git push origin master && git push --tags",
-    "size": "size-limit",
-    "test": "NODE_ENV=test npx vitest --run",
-    "update-changelog": "node --experimental-strip-types scripts/update-changelog.ts",
-    "prepare": "husky"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/anephenix/poller.git"
-  },
-  "keywords": [
-    "fs"
-  ],
-  "author": "Paul Jensen <paul@anephenix.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/anephenix/poller/issues"
-  },
-  "homepage": "https://github.com/anephenix/poller",
-  "devDependencies": {
-    "@biomejs/biome": "2.4.4",
-    "@size-limit/file": "^12.0.0",
-    "@vitest/coverage-v8": "^4.0.18",
-    "husky": "^9.1.7",
-    "size-limit": "^12.0.0",
-    "size-limit-node-esbuild": "^0.4.0",
-    "vitest": "^4.0.18"
-  },
-  "size-limit": [
-    {
-      "path": "dist/index.js",
-      "limit": "10 kB"
-    }
-  ]
+	"name": "poller",
+	"version": "0.0.10",
+	"description": "A FileSystem poller for Node.js",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc --project tsconfig.json",
+		"cover": "NODE_ENV=test npx vitest --coverage --run",
+		"format": "npx @biomejs/biome check --write .",
+		"lint": "npx @biomejs/biome check .",
+		"prepare-patch-release": "npm run build && npm run size && npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
+		"publish-patch-release": "npm run prepare-patch-release && git push origin master && git push --tags",
+		"size": "size-limit",
+		"test": "NODE_ENV=test npx vitest --run",
+		"update-changelog": "node --experimental-strip-types scripts/update-changelog.ts",
+		"prepare": "husky"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/anephenix/poller.git"
+	},
+	"keywords": [
+		"fs"
+	],
+	"author": "Paul Jensen <paul@anephenix.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/anephenix/poller/issues"
+	},
+	"homepage": "https://github.com/anephenix/poller",
+	"devDependencies": {
+		"@biomejs/biome": "2.4.4",
+		"@size-limit/file": "^12.0.0",
+		"@types/node": "^25.3.3",
+		"@vitest/coverage-v8": "^4.0.18",
+		"husky": "^9.1.7",
+		"size-limit": "^12.0.0",
+		"size-limit-node-esbuild": "^0.4.0",
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.18"
+	},
+	"size-limit": [
+		{
+			"path": "dist/index.js",
+			"limit": "10 kB"
+		}
+	]
 }
