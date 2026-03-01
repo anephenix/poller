@@ -2,6 +2,9 @@ import { execSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+const __dirname = new URL(".", import.meta.url).pathname;
+// This script updates the CHANGELOG.md file with the latest version and commit messages.
+
 // Paths
 const packageJsonPath = join(__dirname, "../package.json");
 const changelogPath = join(__dirname, "../CHANGELOG.md");
@@ -16,65 +19,65 @@ const nextVersion = `${major}.${minor}.${patch + 1}`;
 
 // Get previous version from git tags
 const previousVersion = execSync("git describe --tags --abbrev=0 HEAD^")
-	.toString()
-	.trim();
+  .toString()
+  .trim();
 
 // Get commit messages between previous version and current version
 const commitMessages = execSync(
-	`git log ${previousVersion}..HEAD --pretty=format:"- %s"`,
+  `git log ${previousVersion}..HEAD --pretty=format:"- %s"`,
 )
-	.toString()
-	.trim();
+  .toString()
+  .trim();
 
 // Get current date
 function getOrdinalSuffix(day: number): string {
-	if (day > 3 && day < 21) return "th"; // Covers 11th to 19th
-	switch (day % 10) {
-		case 1:
-			return "st";
-		case 2:
-			return "nd";
-		case 3:
-			return "rd";
-		default:
-			return "th";
-	}
+  if (day > 3 && day < 21) return "th"; // Covers 11th to 19th
+  switch (day % 10) {
+    case 1:
+      return "st";
+    case 2:
+      return "nd";
+    case 3:
+      return "rd";
+    default:
+      return "th";
+  }
 }
 
 function formatDateToString(): string {
-	const days: string[] = [
-		"Sunday",
-		"Monday",
-		"Tuesday",
-		"Wednesday",
-		"Thursday",
-		"Friday",
-		"Saturday",
-	];
-	const months: string[] = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
-	];
+  const days: string[] = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const months: string[] = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-	const today: Date = new Date();
-	const dayName: string = days[today.getDay()];
-	const day: number = today.getDate();
-	const monthName: string = months[today.getMonth()];
-	const year: number = today.getFullYear();
+  const today: Date = new Date();
+  const dayName: string = days[today.getDay()];
+  const day: number = today.getDate();
+  const monthName: string = months[today.getMonth()];
+  const year: number = today.getFullYear();
 
-	const ordinalSuffix: string = getOrdinalSuffix(day);
+  const ordinalSuffix: string = getOrdinalSuffix(day);
 
-	return `${dayName} ${day}${ordinalSuffix} ${monthName}, ${year}`;
+  return `${dayName} ${day}${ordinalSuffix} ${monthName}, ${year}`;
 }
 
 const currentDate = formatDateToString();
