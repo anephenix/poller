@@ -1,5 +1,42 @@
 Changelog
 ===
+### 0.0.12 - Wednesday 8th April, 2026
+
+- Updated biome schema
+- Updated dependencies
+- Merge pull request #182 from anephenix/dependabot/npm_and_yarn/types/node-25.5.2
+- Merge pull request #181 from anephenix/dependabot/npm_and_yarn/vite-8.0.5
+- build(deps-dev): bump @types/node from 25.5.0 to 25.5.2
+- build(deps): bump vite from 8.0.3 to 8.0.5
+- Merge pull request #179 from anephenix/dependabot/npm_and_yarn/vitest/coverage-v8-4.1.2
+- Merge pull request #178 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.10
+- build(deps-dev): bump @vitest/coverage-v8 from 4.1.1 to 4.1.2
+- build(deps-dev): bump @biomejs/biome from 2.4.8 to 2.4.10
+- Merge pull request #177 from anephenix/dependabot/npm_and_yarn/picomatch-4.0.4
+- build(deps): bump picomatch from 4.0.3 to 4.0.4
+- Merge pull request #174 from anephenix/dependabot/npm_and_yarn/typescript-6.0.2
+- Updated biome and applied some linting fixes
+- Merge pull request #173 from anephenix/dependabot/npm_and_yarn/vitest/coverage-v8-4.1.1
+- Merge pull request #175 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.8
+- build(deps-dev): bump @biomejs/biome from 2.4.7 to 2.4.8
+- build(deps-dev): bump typescript from 5.9.3 to 6.0.2
+- build(deps-dev): bump @vitest/coverage-v8 from 4.1.0 to 4.1.1
+- Merge pull request #172 from anephenix/dependabot/npm_and_yarn/vitest/coverage-v8-4.1.0
+- build(deps-dev): bump @vitest/coverage-v8 from 4.0.18 to 4.1.0
+- Merge pull request #171 from anephenix/dependabot/npm_and_yarn/vitest-4.1.0
+- Merge pull request #170 from anephenix/dependabot/npm_and_yarn/types/node-25.5.0
+- Merge pull request #169 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.7
+- build(deps-dev): bump vitest from 4.0.18 to 4.1.0
+- build(deps-dev): bump @types/node from 25.4.0 to 25.5.0
+- build(deps-dev): bump @biomejs/biome from 2.4.6 to 2.4.7
+- Merge pull request #168 from anephenix/dependabot/npm_and_yarn/types/node-25.4.0
+- Merge pull request #167 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.6
+- build(deps-dev): bump @types/node from 25.3.5 to 25.4.0
+- build(deps-dev): bump @biomejs/biome from 2.4.5 to 2.4.6
+- Updated dependencies
+- Merge pull request #166 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.5
+- build(deps-dev): bump @biomejs/biome from 2.4.4 to 2.4.5
+
 ### 0.0.11 - Sunday 1st March, 2026
 
 - Resolved running npm run build
