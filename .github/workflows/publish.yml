@@ -1,43 +1,49 @@
 name: Publish to npm
+permissions:
+  contents: read # Required for actions/checkout to read the repository
+  id-token: write # Optional, for OIDC-based authentication if using cloud services
 
 on:
-    push:
-        tags:
-            - 'v*' # Triggers only for tags that start with 'v' (e.g., v1.0, v1.1.0)
-    workflow_dispatch:
+  push:
+    tags:
+      - "v*" # Triggers only for tags that start with 'v' (e.g., v1.0, v1.1.0)
+  workflow_dispatch:
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Run tests
-              run: npm test
+      - name: Run tests
+        run: npm test
 
-            - name: Build project
-              run: npm run build
+      - name: Build project
+        run: npm run build
 
-    publish:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 24
-                  registry-url: 'https://registry.npmjs.org/'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org/"
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Publish to npm
-              run: npm publish
+      - name: Lint package
+        run: npm run lint:package
+
+      - name: Publish to npm
+        run: npm publish --provenance

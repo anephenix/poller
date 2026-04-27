@@ -2,12 +2,14 @@
 	"name": "poller",
 	"version": "0.0.15",
 	"description": "A FileSystem poller for Node.js",
-	"main": "index.js",
+	"main": "dist/index.js",
+	"type": "commonjs",
 	"scripts": {
 		"build": "tsc --project tsconfig.json",
 		"cover": "NODE_ENV=test npx vitest --coverage --run",
 		"format": "npx @biomejs/biome check --write .",
 		"lint": "npx @biomejs/biome check .",
+		"lint:package": "publint",
 		"prepare-patch-release": "npm run build && npm run size && npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
 		"publish-patch-release": "npm run prepare-patch-release && git push origin master && git push --tags",
 		"size": "size-limit",
@@ -22,6 +24,10 @@
 	"keywords": [
 		"fs"
 	],
+	"files": [
+		"dist",
+		"README.md"
+	],
 	"author": "Paul Jensen <paul@anephenix.com>",
 	"license": "MIT",
 	"bugs": {
@@ -34,6 +40,7 @@
 		"@types/node": "^25.3.3",
 		"@vitest/coverage-v8": "^4.0.18",
 		"husky": "^9.1.7",
+		"publint": "^0.3.18",
 		"size-limit": "^12.0.0",
 		"size-limit-node-esbuild": "^0.4.0",
 		"typescript": "^6.0.2",
