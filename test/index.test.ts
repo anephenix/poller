@@ -322,4 +322,81 @@ describe("poller(path, {options});", () => {
 			});
 		});
 	});
+
+	describe("recursive option", () => {
+		const folderPath = path.join(__dirname, "./example");
+		const subDir = path.join(folderPath, "subdir");
+		const nestedFile = path.join(subDir, "nested.txt");
+
+		afterEach(() => {
+			return new Promise<void>((resolve, reject) => {
+				fs.rm(subDir, { recursive: true, force: true }, (err) => {
+					if (err) reject(err);
+					else resolve();
+				});
+			});
+		});
+
+		it("should emit an add event for a file added inside a subdirectory", () => {
+			return new Promise<void>((resolve, reject) => {
+				poller(
+					folderPath,
+					{ interval: 1, recursive: true },
+					(err: Error | null, poll: Poller | undefined) => {
+						try {
+							assert.equal(null, err);
+							(poll as Poller).on("add", (addedFilePath: string) => {
+								if (addedFilePath === nestedFile) {
+									(poll as Poller).close();
+									resolve();
+								}
+							});
+
+							fs.mkdir(subDir, (err) => {
+								if (err) return reject(err);
+								fs.writeFile(nestedFile, "nested content", (err) => {
+									if (err) reject(err);
+								});
+							});
+						} catch (error) {
+							reject(error);
+						}
+					},
+				);
+			});
+		});
+
+		it("should emit a remove event for a file removed from inside a subdirectory", () => {
+			return new Promise<void>((resolve, reject) => {
+				fs.mkdir(subDir, (err) => {
+					if (err) return reject(err);
+					fs.writeFile(nestedFile, "nested content", (err) => {
+						if (err) return reject(err);
+
+						poller(
+							folderPath,
+							{ interval: 1, recursive: true },
+							(err: Error | null, poll: Poller | undefined) => {
+								try {
+									assert.equal(null, err);
+									(poll as Poller).on("remove", (removedFilePath: string) => {
+										if (removedFilePath === nestedFile) {
+											(poll as Poller).close();
+											resolve();
+										}
+									});
+
+									fs.unlink(nestedFile, (err) => {
+										if (err) reject(err);
+									});
+								} catch (error) {
+									reject(error);
+								}
+							},
+						);
+					});
+				});
+			});
+		});
+	});
 });

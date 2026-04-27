@@ -7,7 +7,7 @@ A FileSystem poller for Node.js.
 
 ### Dependencies
 
-- Node.js (v22+)
+- Node.js (v24+)
 
 ### Install
 
@@ -37,8 +37,21 @@ poller('/tmp/myFolder', (err, poll) => {
 
 // Poll a file directory at an interval of 50ms (the default is 100ms)
 poller('/tmp/myFolder', { interval: 50 }, (err, poll) => {});
+
+// Recursively watch a folder and all subdirectories within it
+poller('/tmp/myFolder', { recursive: true }, (err, poll) => {
+	poll.on('add', filePath => {
+		console.log(filePath, 'was added');
+	});
+
+	poll.on('remove', filePath => {
+		console.log(filePath, 'was removed');
+	});
+
+	poll.close();
+});
 ```
 
 ### Licence and Rights
 
-&copy; 2025 Anephenix OÜ. Poller is licenced under the [MIT license](/LICENSE).
+&copy; 2026 Anephenix Ltd. Poller is licenced under the [MIT license](/LICENSE).

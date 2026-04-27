@@ -53,14 +53,19 @@ function poller(
 			// Generate a polling event emitter
 			const poll = new EventEmitter() as Poller;
 
+			const options = typeof optionsOrCb === "object" ? optionsOrCb : {};
+			const readdirOptions = options.recursive
+				? { recursive: true as const }
+				: {};
+
 			// Get the initial list of files in the folder
-			fs.readdir(folderPath, (err, files) => {
+			fs.readdir(folderPath, readdirOptions, (err, files) => {
 				if (err) {
 					cb?.(err);
 					return;
 				}
 
-				poll.files = files;
+				poll.files = files as string[];
 
 				// Setup the internal watch function
 				poll.watch = () => {
@@ -76,15 +81,15 @@ function poller(
 					poll.timeout = setInterval(() => {
 						if (busy) return;
 						busy = true;
-						fs.readdir(folderPath, (err, files) => {
+						fs.readdir(folderPath, readdirOptions, (err, files) => {
 							busy = false;
 							if (err) {
 								throw err;
 							}
 
 							// Get the list of files that have been added or removed
-							const addedFiles = difference(files, poll.files);
-							const removedFiles = difference(poll.files, files);
+							const addedFiles = difference(files as string[], poll.files);
+							const removedFiles = difference(poll.files, files as string[]);
 
 							if (addedFiles.length > 0) {
 								// Emit an add event with the full path of the added file
@@ -101,7 +106,7 @@ function poller(
 							}
 
 							// Set the list of tracked files to the files that were polled
-							poll.files = files;
+							poll.files = files as string[];
 						});
 					}, interval);
 				};

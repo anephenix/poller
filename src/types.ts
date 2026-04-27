@@ -15,6 +15,8 @@ export interface Poller extends EventEmitter {
 export interface PollerOptions {
 	// The interval for the polling
 	interval?: number;
+	// Whether to recursively watch subdirectories
+	recursive?: boolean;
 }
 
 // The function to execute once finished
