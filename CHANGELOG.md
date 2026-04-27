@@ -1,5 +1,9 @@
 Changelog
 ===
+### 0.0.15 - Monday 27th April, 2026
+
+- A fix for the package.json file
+
 ### 0.0.14 - Monday 27th April, 2026
 
 - 0.0.13
