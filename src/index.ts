@@ -1,7 +1,7 @@
 // Dependencies
 import { EventEmitter } from "node:events";
 import * as fs from "node:fs";
-import { difference } from "./helpers";
+import { difference } from "./helpers.js";
 import type { Poller, PollerCallback, PollerOptions } from "./types";
 
 /*
