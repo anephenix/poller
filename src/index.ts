@@ -21,7 +21,7 @@ function poller(
 	folderPath: string,
 	optionsOrCb?: PollerOptions | PollerCallback,
 	cb?: PollerCallback,
-): void | Promise<Poller> {
+): undefined | Promise<Poller> {
 	const hasCallback =
 		typeof optionsOrCb === "function" || typeof cb === "function";
 
@@ -38,7 +38,11 @@ function poller(
 		});
 	}
 
-	pollerWithCallback(folderPath, optionsOrCb as PollerOptions | PollerCallback, cb);
+	pollerWithCallback(
+		folderPath,
+		optionsOrCb as PollerOptions | PollerCallback,
+		cb,
+	);
 }
 
 function pollerWithCallback(
