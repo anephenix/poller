@@ -28,7 +28,7 @@
 		"publish-patch-release": "npm run prepare-patch-release && git push origin master && git push --tags",
 		"size": "size-limit",
 		"test": "NODE_ENV=test npx vitest --run",
-		"update-changelog": "node --experimental-strip-types scripts/update-changelog.ts",
+		"update-changelog": "node scripts/update-changelog.mts",
 		"prepare": "husky"
 	},
 	"repository": {
