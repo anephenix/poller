@@ -1,5 +1,9 @@
 Changelog
 ===
+### 0.0.17 - Monday 27th April, 2026
+
+- Added a missing step to the publish workflow
+
 ### 0.0.16 - Monday 27th April, 2026
 
 - Make the update-changelog script run
