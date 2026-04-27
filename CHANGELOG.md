@@ -1,5 +1,26 @@
 Changelog
 ===
+### 0.0.14 - Monday 27th April, 2026
+
+- 0.0.13
+- Updated changelog
+- Formatting fixes
+- Added support for calling Poller as an async promise function
+- Added support for recursively watching folders for changes in sub-folders
+- Fixed a race condition bug where the addFile event on a new file being added could be emitted more than once.
+- Merge pull request #190 from anephenix/dependabot/npm_and_yarn/types/node-25.6.0
+- Merge pull request #189 from anephenix/dependabot/npm_and_yarn/typescript-6.0.3
+- Merge pull request #188 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.12
+- build(deps-dev): bump @types/node from 25.5.2 to 25.6.0
+- build(deps-dev): bump typescript from 6.0.2 to 6.0.3
+- build(deps-dev): bump @biomejs/biome from 2.4.11 to 2.4.12
+- Merge pull request #185 from anephenix/dependabot/npm_and_yarn/vitest/coverage-v8-4.1.4
+- Merge pull request #186 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.11
+- Merge pull request #183 from anephenix/dependabot/npm_and_yarn/size-limit/file-12.1.0
+- build(deps-dev): bump @biomejs/biome from 2.4.10 to 2.4.11
+- build(deps-dev): bump @vitest/coverage-v8 from 4.1.3 to 4.1.4
+- build(deps-dev): bump @size-limit/file from 12.0.1 to 12.1.0
+
 ### 0.0.13 - Monday 27th April, 2026
 
 - Formatting fixes
