@@ -144,6 +144,66 @@ describe("poller(path);", () => {
 			});
 		});
 
+		describe("when a file is added within the folder under rapid polling", () => {
+			afterEach(() => {
+				const folderPath = path.join(__dirname, "./example");
+				const filePath = path.join(folderPath, "testFile.txt");
+
+				return new Promise<void>((resolve, reject) => {
+					fs.open(filePath, (error) => {
+						if (!error) {
+							fs.unlink(filePath, (err) => {
+								if (err) reject(err);
+								else resolve();
+							});
+						} else {
+							reject(new Error(`The file path does not exist: ${filePath}`));
+						}
+					});
+				});
+			});
+
+			it("should emit an add event exactly once, not twice (race condition guard)", () => {
+				const folderPath = path.join(__dirname, "./example");
+				const filePath = path.join(folderPath, "testFile.txt");
+				return new Promise<void>((resolve, reject) => {
+					poller(
+						folderPath,
+						{ interval: 1 },
+						(err: Error | null, poll: Poller | undefined) => {
+							try {
+								assert.equal(null, err);
+								let addCount = 0;
+								(poll as Poller).on("add", (addedFilePath: string) => {
+									if (addedFilePath === filePath) addCount++;
+								});
+
+								fs.writeFile(filePath, "Hello World", (err) => {
+									if (err) return reject(err);
+									// Wait long enough for multiple poll cycles to fire
+									setTimeout(() => {
+										(poll as Poller).close();
+										try {
+											assert.equal(
+												1,
+												addCount,
+												`Expected add event once, got ${addCount}`,
+											);
+											resolve();
+										} catch (error) {
+											reject(error);
+										}
+									}, 100);
+								});
+							} catch (error) {
+								reject(error);
+							}
+						},
+					);
+				});
+			});
+		});
+
 		describe("when a file is removed from within the folder", () => {
 			it("should emit a remove event from the poll event emitter", () => {
 				const folderPath = path.join(__dirname, "./example");

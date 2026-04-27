@@ -69,9 +69,15 @@ function poller(
 					const interval: number =
 						(optionsOrCb as PollerOptions).interval || 100;
 
+					// Prevents overlapping readdir calls if a cycle takes longer than the interval
+					let busy = false;
+
 					// Setup the interval function
 					poll.timeout = setInterval(() => {
+						if (busy) return;
+						busy = true;
 						fs.readdir(folderPath, (err, files) => {
+							busy = false;
 							if (err) {
 								throw err;
 							}
