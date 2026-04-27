@@ -1,6 +1,6 @@
 {
 	"name": "poller",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"description": "A FileSystem poller for Node.js",
 	"main": "index.js",
 	"scripts": {
