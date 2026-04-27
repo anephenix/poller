@@ -1,5 +1,11 @@
 Changelog
 ===
+### 0.0.16 - Monday 27th April, 2026
+
+- Make the update-changelog script run
+- Added publint for linting the package, some updates, and fixes for the github workflow that publishes an update
+- Added publint for linting the package, some updates, and fixes for the github workflow that publishes an update
+
 ### 0.0.15 - Monday 27th April, 2026
 
 - A fix for the package.json file
