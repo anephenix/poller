@@ -10,9 +10,40 @@ import type { Poller, PollerCallback, PollerOptions } from "./types";
   		@param optionsOrCb   	Object/Function  	Either the options for the poller, or the function to execute once finished
   		@param cb      			Function      		The function to execute once finished
 */
+function poller(folderPath: string, cb: PollerCallback): void;
 function poller(
 	folderPath: string,
-	optionsOrCb: PollerOptions | PollerCallback,
+	options: PollerOptions,
+	cb: PollerCallback,
+): void;
+function poller(folderPath: string, options?: PollerOptions): Promise<Poller>;
+function poller(
+	folderPath: string,
+	optionsOrCb?: PollerOptions | PollerCallback,
+	cb?: PollerCallback,
+): void | Promise<Poller> {
+	const hasCallback =
+		typeof optionsOrCb === "function" || typeof cb === "function";
+
+	if (!hasCallback) {
+		return new Promise<Poller>((resolve, reject) => {
+			pollerWithCallback(
+				folderPath,
+				optionsOrCb as PollerOptions | undefined,
+				(err, poll) => {
+					if (err) reject(err);
+					else resolve(poll as Poller);
+				},
+			);
+		});
+	}
+
+	pollerWithCallback(folderPath, optionsOrCb as PollerOptions | PollerCallback, cb);
+}
+
+function pollerWithCallback(
+	folderPath: string,
+	optionsOrCb: PollerOptions | PollerCallback | undefined,
 	cb?: PollerCallback,
 ): void {
 	// We set the callback to the 2nd argument, if no options are passed
@@ -53,7 +84,8 @@ function poller(
 			// Generate a polling event emitter
 			const poll = new EventEmitter() as Poller;
 
-			const options = typeof optionsOrCb === "object" ? optionsOrCb : {};
+			const options =
+				typeof optionsOrCb === "object" ? (optionsOrCb as PollerOptions) : {};
 			const readdirOptions = options.recursive
 				? { recursive: true as const }
 				: {};
@@ -71,8 +103,7 @@ function poller(
 				poll.watch = () => {
 					// If an interval option was passed, use that number as the interval,
 					// otherwise default to 100ms
-					const interval: number =
-						(optionsOrCb as PollerOptions).interval || 100;
+					const interval: number = options.interval || 100;
 
 					// Prevents overlapping readdir calls if a cycle takes longer than the interval
 					let busy = false;

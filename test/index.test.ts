@@ -323,6 +323,51 @@ describe("poller(path, {options});", () => {
 		});
 	});
 
+	describe("promise interface", () => {
+		it("should resolve with a Poller when called without a callback", async () => {
+			const folderPath = path.join(__dirname, "./example");
+			const poll = await poller(folderPath);
+			assert(poll instanceof EventEmitter);
+			poll.close();
+		});
+
+		it("should resolve with a Poller when called with options but no callback", async () => {
+			const folderPath = path.join(__dirname, "./example");
+			const poll = await poller(folderPath, { interval: 50 });
+			assert(poll instanceof EventEmitter);
+			const timeout = poll.timeout as ExtendedTimeout;
+			assert.equal(50, timeout._idleTimeout);
+			poll.close();
+		});
+
+		it("should reject when the folder does not exist", async () => {
+			const nonExistentFolder = "/tmp/non-existent";
+			await assert.rejects(
+				() => poller(nonExistentFolder),
+				(err: Error) => {
+					assert.equal(
+						`This folder does not exist: ${nonExistentFolder}`,
+						err.message,
+					);
+					return true;
+				},
+			);
+		});
+
+		it("should reject when the path is not a folder", async () => {
+			await assert.rejects(
+				() => poller(__filename),
+				(err: Error) => {
+					assert.equal(
+						`The path you passed is not a folder: ${__filename}`,
+						err.message,
+					);
+					return true;
+				},
+			);
+		});
+	});
+
 	describe("recursive option", () => {
 		const folderPath = path.join(__dirname, "./example");
 		const subDir = path.join(folderPath, "subdir");

@@ -50,6 +50,22 @@ poller('/tmp/myFolder', { recursive: true }, (err, poll) => {
 
 	poll.close();
 });
+
+// Promise-based interface (omit the callback to receive a Promise)
+const poll = await poller('/tmp/myFolder');
+
+poll.on('add', filePath => {
+	console.log(filePath, 'was added');
+});
+
+poll.on('remove', filePath => {
+	console.log(filePath, 'was removed');
+});
+
+poll.close();
+
+// Promise-based with options
+const poll2 = await poller('/tmp/myFolder', { interval: 50, recursive: true });
 ```
 
 ### Licence and Rights
