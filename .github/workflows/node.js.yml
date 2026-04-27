@@ -1,33 +1,33 @@
 name: Node.js CI
 
 on:
-    push:
-        branches: [master]
-    pull_request:
-        branches: [master]
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        env:
-            APP_ENV: test
-            NODE_ENV: test
+  build:
+    runs-on: ubuntu-latest
+    env:
+      APP_ENV: test
+      NODE_ENV: test
 
-        strategy:
-            matrix:
-                node-version: [22.x]
+    strategy:
+      matrix:
+        node-version: [24.x]
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4
-              with:
-                  node-version: ${{ matrix.node-version }}
-                  cache: 'npm'
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
-            - run: npm i
-            - run: npm run build
-            - run: npm run lint
-            - name: Run Tests with Coverage
-              run: npm run cover
+      - run: npm i
+      - run: npm run build
+      - run: npm run lint
+      - name: Run Tests with Coverage
+        run: npm run cover
