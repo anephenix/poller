@@ -50,12 +50,12 @@
 	"homepage": "https://github.com/anephenix/poller",
 	"devDependencies": {
 		"@biomejs/biome": "2.5.5",
-		"@size-limit/file": "^12.0.0",
+		"@size-limit/file": "^13.0.1",
 		"@types/node": "^26.0.0",
 		"@vitest/coverage-v8": "^4.0.18",
 		"husky": "^9.1.7",
 		"publint": "^0.3.18",
-		"size-limit": "^12.0.0",
+		"size-limit": "^13.0.1",
 		"size-limit-node-esbuild": "^0.4.0",
 		"typescript": "^7.0.2",
 		"vitest": "^4.0.18"
