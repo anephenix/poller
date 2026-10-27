@@ -17,18 +17,18 @@ A FileSystem poller for Node.js.
 
 ```javascript
 // Require the library
-const poller = require('poller');
+const poller = require("poller");
 
 // Poll a file directory
-poller('/tmp/myFolder', (err, poll) => {
+poller("/tmp/myFolder", (err, poll) => {
 	// Log every time a file is added into the folder
-	poll.on('add', filePath => {
-		console.log(filePath, 'was added');
+	poll.on("add", (filePath) => {
+		console.log(filePath, "was added");
 	});
 
 	// Log every time a file is removed from the folder
-	poll.on('remove', filePath => {
-		console.log(filePath, 'was removed');
+	poll.on("remove", (filePath) => {
+		console.log(filePath, "was removed");
 	});
 
 	// Stop polling the folder for file adds/removals
@@ -36,36 +36,36 @@ poller('/tmp/myFolder', (err, poll) => {
 });
 
 // Poll a file directory at an interval of 50ms (the default is 100ms)
-poller('/tmp/myFolder', { interval: 50 }, (err, poll) => {});
+poller("/tmp/myFolder", { interval: 50 }, (err, poll) => {});
 
 // Recursively watch a folder and all subdirectories within it
-poller('/tmp/myFolder', { recursive: true }, (err, poll) => {
-	poll.on('add', filePath => {
-		console.log(filePath, 'was added');
+poller("/tmp/myFolder", { recursive: true }, (err, poll) => {
+	poll.on("add", (filePath) => {
+		console.log(filePath, "was added");
 	});
 
-	poll.on('remove', filePath => {
-		console.log(filePath, 'was removed');
+	poll.on("remove", (filePath) => {
+		console.log(filePath, "was removed");
 	});
 
 	poll.close();
 });
 
 // Promise-based interface (omit the callback to receive a Promise)
-const poll = await poller('/tmp/myFolder');
+const poll = await poller("/tmp/myFolder");
 
-poll.on('add', filePath => {
-	console.log(filePath, 'was added');
+poll.on("add", (filePath) => {
+	console.log(filePath, "was added");
 });
 
-poll.on('remove', filePath => {
-	console.log(filePath, 'was removed');
+poll.on("remove", (filePath) => {
+	console.log(filePath, "was removed");
 });
 
 poll.close();
 
 // Promise-based with options
-const poll2 = await poller('/tmp/myFolder', { interval: 50, recursive: true });
+const poll2 = await poller("/tmp/myFolder", { interval: 50, recursive: true });
 ```
 
 ### Licence and Rights
