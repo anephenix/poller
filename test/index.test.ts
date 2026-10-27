@@ -269,7 +269,7 @@ describe("poller(path);", () => {
 });
 
 describe("poller(path, {options});", () => {
-	describe("interval option", () => {
+	describe("explicit interval option", () => {
 		it("should allow the user to control the interval time between polling checks", () => {
 			const folderPath = path.join(__dirname, "./example");
 
@@ -298,7 +298,7 @@ describe("poller(path, {options});", () => {
 		});
 	});
 
-	describe("interval option", () => {
+	describe("default interval option", () => {
 		it("should otherwise use a default value of 100ms if no option is passed", () => {
 			const folderPath = path.join(__dirname, "./example");
 
