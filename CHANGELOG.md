@@ -418,7 +418,6 @@
 - Added Husky hooks
 - Updated dependencies and converted the library to TypeScript
 
-
 ## 0.0.5 - 2017-06-17-1257
 
 Use of tabs for eslint compatibility

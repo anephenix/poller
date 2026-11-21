@@ -2,7 +2,6 @@
 
 [![NPM version](https://badge.fury.io/js/poller.svg)](http://badge.fury.io/js/poller) [![Node.js CI](https://github.com/anephenix/poller/actions/workflows/node.js.yml/badge.svg)](https://github.com/anephenix/poller/actions/workflows/node.js.yml) [![Socket Badge](https://socket.dev/api/badge/npm/package/poller)](https://socket.dev/npm/package/poller)
 
-
 A FileSystem poller for Node.js.
 
 ### Dependencies
